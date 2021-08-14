@@ -10,9 +10,9 @@ import React from 'react';
 const Pet = (props) => {
     return(
         <div>
-            <h2>{props.car}</h2>
-            <h3>{props.comp}</h3>
-            <h3>{props.rate}</h3>
+            <h2>{props.name}</h2>
+            <h3>{props.animal}</h3>
+            <h3>{props.breed}</h3>
         </div>
     )
 
