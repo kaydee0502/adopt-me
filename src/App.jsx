@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pet from "./Pet";
+import SearchParams from "./SearchParams";
 
 // const App = () => {
 //   return React.createElement("div", {}, [
@@ -15,11 +16,11 @@ const App = () => {
   return (
     <div>
       <h1>About Me!</h1>
-      <Pet car="Evo lancer" comp="Mitsubishi" rate="5" />
-      <Pet car="Evo lancer" comp="Mitsubishi" rate="5" />
-      <Pet car="Evo lancer" comp="Mitsubishi" rate="5" />
+      <SearchParams />
     </div>
   );
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+
+
+ReactDOM.render(<App />, document.getElementById("root"));
