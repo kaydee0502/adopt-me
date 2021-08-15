@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Pet from "./Pet";
+import Results from "./Results"
+import useBreedList from "./useBreedList";
 
-const ANIMALS = ["Parrot", "Owl", "Bat"];
+const ANIMALS = ["dog", "rabbit", "bird", "cat"];
 const BREEDS = ["a", "b", "c"];
 
 function SearchParams() {
@@ -10,10 +11,11 @@ function SearchParams() {
   const [animal, updateAnimal] = useState("");
   const [breed, updateBreed] = useState("");
   const [pets, setPets] = useState([]);
-
+  const [breeds] = useBreedList(animal);
+  console.log(breeds);
   useEffect(() => {
     requestPets();
-  }, [loc]);
+  }, []);
 
   async function requestPets() {
     const res = await fetch(
@@ -27,7 +29,10 @@ function SearchParams() {
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit = {e => {
+        e.preventDefault();
+        requestPets();
+      }}>
         <label htmlFor="location">
           Location
           <input
@@ -46,8 +51,8 @@ function SearchParams() {
             onBlur={(e) => updateAnimal(e.target.value)}
           >
             <option />
-            {ANIMALS.map((animal) => (
-              <option key={animal} value={animal}>
+            {ANIMALS.map((animal, idx) => (
+              <option key={idx} value={animal}>
                 {animal}
               </option>
             ))}
@@ -62,7 +67,7 @@ function SearchParams() {
             onBlur={(e) => updateBreed(e.target.value)}
           >
             <option />
-            {BREEDS.map((breed) => (
+            {breeds.map((breed) => (
               <option key={breed} value={breed}>
                 {breed}
               </option>
@@ -71,14 +76,7 @@ function SearchParams() {
         </label>
         <button>Submit</button>
       </form>
-      {pets.map((pet) => (
-        <Pet
-          name={pet.name}
-          animal={pet.animal}
-          breed={pet.breed}
-          key={pet.id}
-        />
-      ))}
+      <Results pets = {pets} />
     </div>
   );
 }
