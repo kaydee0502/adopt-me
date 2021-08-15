@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Results from "./Results"
 import useBreedList from "./useBreedList";
 
-const ANIMALS = ["dog", "rabbit", "bird", "cat"];
+const ANIMALS = ["dog", "rabbit", "bird", "cat", "reptile"];
 const BREEDS = ["a", "b", "c"];
 
 function SearchParams() {
